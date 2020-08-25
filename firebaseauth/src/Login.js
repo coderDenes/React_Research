@@ -5,6 +5,7 @@ import Fire from './config/firebase/'
 
 class Login extends React.Component {
 
+    // create Use with email and Password...
     signUp() {
         const email = document.querySelector('#email').value;
         const password = document.querySelector('#password').value;
@@ -17,6 +18,7 @@ class Login extends React.Component {
             })
     }
 
+    // sign in with email and password...
     login() {
         const email = document.querySelector('#email').value;
         const password = document.querySelector('#password').value;
