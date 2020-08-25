@@ -1,17 +1,47 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, {
+  Component
+} from 'react';
+import fire from './config/firebase'
+import Login from './Login.js';
+import Home from './Home.js';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends Component {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+    };
+
+    this.authListener = this.authListener.bind(this);
+  }
+
+  componentDidMount() {
+    this.authListener();
+  }
+
+  authListener() {
+    fire.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          user
+        });
+      } else {
+        this.setState({
+          user: null
+        });
+      }
+    })
+  }
+
+  render() {
+    return ( <
+      div className = "App" > {
+        this.state.user ? ( < Home / > ) : ( < Login / > )
+      } <
+      /div>
+    );
+  }
+}
+
+export default App;
