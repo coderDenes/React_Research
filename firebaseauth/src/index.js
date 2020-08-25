@@ -1,9 +1,9 @@
 import React, {
   Component
 } from 'react';
-import fire from './config/firebase'
-import Login from './Login.js';
-import Home from './Home.js';
+import fire from './config/fire'
+import Login from './Login';
+import Home from './Home';
 
 class App extends Component {
 

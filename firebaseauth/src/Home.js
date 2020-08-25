@@ -1,5 +1,5 @@
 import React from 'react';
-import fire from './config/firebase';
+import fire from './config/fire';
 
 class Home extends React.Component {
 
