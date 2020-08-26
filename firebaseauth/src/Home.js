@@ -1,27 +1,19 @@
-import React from 'react';
-import fire from './config/fire';
+import React, { Component } from 'react'
 
-class Home extends React.Component {
 
-    logout() {
-        fire.auth().signOut();
+class Home extends Component{
+    constructor(props){
+        super(props)
+        this.state ={ }
     }
-
-    render() {
-        return ( <
-            div style = {
-                {
-                    textAlign: 'center'
-                }
-            } >
-            <
-            h1 > You Are Logged In < /h1> <
-            button onClick = {
-                this.logout
-            } > Logout < /button> <
-            /div>
+    render(){
+        return(
+            <div>
+            <h1>You are logged in !</h1>
+            <button>Logout</button>
+            </div>
         )
     }
-}
+} 
 
-export default Home;
+export default Home

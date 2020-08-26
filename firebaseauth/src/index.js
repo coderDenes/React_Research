@@ -1,47 +1,15 @@
-import React, {
-  Component
-} from 'react';
-import fire from './config/fire'
-import Login from './Login';
-import Home from './Home';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
 
-class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-    };
-
-    this.authListener = this.authListener.bind(this);
-  }
-
-  componentDidMount() {
-    this.authListener();
-  }
-
-  authListener() {
-    fire.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.setState({
-          user
-        });
-      } else {
-        this.setState({
-          user: null
-        });
-      }
-    })
-  }
-
-  render() {
-    return ( <
-      div className = "App" > {
-        this.state.user ? ( < Home / > ) : ( < Login / > )
-      } <
-      /div>
-    );
-  }
+const FApp = ()=>{
+    return(
+        <div>
+        <App/>
+        </div>
+    )
 }
 
-export default App;
+
+ReactDOM.render(<FApp/>, document.querySelector("#root"))

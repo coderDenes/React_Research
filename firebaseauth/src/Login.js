@@ -1,79 +1,29 @@
-import React from 'react';
-import fire from './config/fire'
+import React, { Component } from 'react'
 
 
-
-class Login extends React.Component {
-
-    // create Use with email and Password...
-    signUp() {
-        const email = document.querySelector('#email').value;
-        const password = document.querySelector('#password').value;
-        fire.auth().createUserWithEmailAndPassword(email, password)
-            .then((u) => {
-                console.log('Successfully Signed Up');
-            })
-            .catch((err) => {
-                console.log('Error: ' + err.toString());
-            })
+class Login extends Component{
+    constructor(props){
+        super(props)
+        this.state ={
+            email : "",
+            password : ""
+        }
     }
+    render(){
+        return(
+            <div>
+            <form>
+            <input type="email" id= "email" placeholder="email"
+            onChange={this.handleChange} value={this.state.email}/>
 
-    // sign in with email and password...
-    login() {
-        const email = document.querySelector('#email').value;
-        const password = document.querySelector('#password').value;
-        fire.auth().signInWithEmailAndPassword(email, password)
-            .then((u) => {
-                console.log('Successfully Logged In');
-            })
-            .catch((err) => {
-                console.log('Error: ' + err.toString());
-            })
-    }
-
-    render() {
-        return ( <
-            div style = {
-                {
-                    textAlign: 'center'
-                }
-            } >
-            <
-            div >
-            <
-            div > Email < /div> <
-            input id = "email"
-            placeholder = "Enter Email.."
-            type = "text" / >
-            <
-            /div> <
-            div >
-            <
-            div > Password < /div> <
-            input id = "password"
-            placeholder = "Enter Password.."
-            type = "text" / >
-            <
-            /div> <
-            button style = {
-                {
-                    margin: '10px'
-                }
-            }
-            onClick = {
-                this.login
-            } > Login < /button> <
-            button style = {
-                {
-                    margin: '10px'
-                }
-            }
-            onClick = {
-                this.signUp
-            } > Sign Up < /button> <
-            /div>
+            <input type="password" id= "password" placeholder="password"
+            onChange={this.handleChange} value={this.state.email}/>
+            <button onClick={this.Login}>Login</button>
+            <button onClick={this.signup}>signup</button>
+            </form>
+            </div>
         )
     }
-}
+} 
 
-export default Login;
+export default Login
