@@ -1,39 +1,24 @@
-import React, { Component } from 'react'
-import fire from './config/fire';
-import Home from './Home';
-import Login from './Login';
+import React, {useContext} from 'react';
+import {Route, Switch} from 'react-router-dom'
+import Signup from './component/Signup'
+import Signin from './component/Signin'
+import Home from './component/Home'
+import {firebaseAuth} from './provider/AuthProvider'
 
-class App extends Component{
-    constructor(props){
-        super(props);
-        this.state ={
-            user : {}
-        }
-    }
-    
-    componentDidMount(){
-        this.authListener();
-    }
+function App() {
+  const { token } = useContext(firebaseAuth)
+  console.log(token)
+  return (
+    <>
+   <Switch>
+        {/* route allows you to render by url path */}
 
-    authListener(){
-        fire.auth().onAuthStateChanged((user) =>{
-            if(user){
-                this.setState({user})
-            }
-            else{
-                this.setState({user : null})
-            }
-        })
-    }
-    render(){
-        return(
-            <div className="App">
-            {this.state.user ? (<Home/>) : (<Login/>)}
-            </div>
-        )
-    }
-        
-    
+        <Route exact path='/' render={rProps => token === null ? <Signin /> : <Home />} />
+        <Route exact path='/signin' component={Signin} />
+        <Route exact path='/signup' component={Signup} />
+      </Switch>
+    </>
+  );
 }
 
 export default App;
